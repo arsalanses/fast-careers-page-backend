@@ -1,6 +1,6 @@
 from sqlmodel import create_engine, select, Session
 
-from models import Department, Application, JobSeeker, Position
+from .models import Department, Application, JobSeeker, Position
 
 sqlite_file_name = "database.db"
 sqlite_url = f"sqlite:///{sqlite_file_name}"

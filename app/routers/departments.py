@@ -3,7 +3,7 @@ from typing import Union
 from fastapi import APIRouter
 
 from sqlmodel import select, Session
-from database import engine, Department
+from app.database import engine, Department
 
 router = APIRouter()
 

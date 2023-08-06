@@ -1,8 +1,8 @@
 from fastapi import FastAPI
 
 from sqlmodel import SQLModel
-from database import engine
-from routers import departments, applications, jobseekers, positions
+from .database import engine
+from .routers import departments, applications, jobseekers, positions
 
 app = FastAPI()
 

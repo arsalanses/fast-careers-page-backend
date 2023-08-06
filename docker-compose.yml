@@ -1,0 +1,14 @@
+services:
+  caddy:
+    image: caddy:latest
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+    ports:
+      - "127.0.0.1:8182:80"
+
+  careers:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    mem_limit: 500m
+    cpus: 0.5

@@ -9,5 +9,5 @@ source venv/bin/activate
 
 ## How to run
 ```sh
-uvicorn main:app --reload
+uvicorn app.main:app --reload
 ```
