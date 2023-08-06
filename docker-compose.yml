@@ -13,3 +13,6 @@ services:
       dockerfile: Dockerfile
     mem_limit: 500m
     cpus: 0.5
+
+  # whoami:
+  #   image: traefik/whoami:latest
