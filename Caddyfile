@@ -1,9 +1,0 @@
-{
-  email admin@example.com
-}
-
-http://localhost {
-  reverse_proxy /* {
-    to http://careers:80
-  }
-}
