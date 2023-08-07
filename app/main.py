@@ -4,7 +4,7 @@ from fastapi import FastAPI, Header
 
 from sqlmodel import SQLModel
 from .database import engine
-from .routers import departments, applications, jobseekers, positions
+from .routers import departments, applications, positions
 
 app = FastAPI()
 
@@ -14,7 +14,6 @@ def on_startup():
 
 app.include_router(applications.router)
 app.include_router(departments.router)
-app.include_router(jobseekers.router)
 app.include_router(positions.router)
 
 @app.get("/ping")

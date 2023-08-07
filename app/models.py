@@ -1,7 +1,7 @@
 from typing import Optional, List
 
 from sqlmodel import Field, SQLModel, Relationship
-
+from datetime import datetime
 
 class Department(SQLModel, table=True):
     id: Optional[int] = Field(default=None, primary_key=True)
@@ -24,23 +24,17 @@ class Position(SQLModel, table=True):
     # applications: List["Application"] = Relationship(back_populates="position")
 
 
-class JobSeeker(SQLModel, table=True):
-    id: Optional[int] = Field(default=None, primary_key=True)
-    name: str
-    contact_details: str
-    resume: str
-
-    # applications: List["Application"] = Relationship(back_populates="jobseeker")
-
-
 class Application(SQLModel, table=True):
     id: Optional[int] = Field(default=None, primary_key=True)
-    application_date: str
+    application_date: datetime = Field(default=datetime.now())
+
+    jobseeker_name: str
+    jobseeker_phone: str
+    jobseeker_mail: str
+    jobseeker_resume: str
+
     is_pending: Optional[bool] = True
     is_approved: Optional[bool] = False
-
-    jobseeker_id: Optional[int] = Field(default=None, foreign_key="jobseeker.id")
-    # jobseeker: Optional[JobSeeker] = Relationship(back_populates="applications")
 
     position_id: Optional[int] = Field(default=None, foreign_key="position.id")
     # position: Optional[Position] = Relationship(back_populates="applications")
