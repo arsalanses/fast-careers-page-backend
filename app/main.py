@@ -8,7 +8,9 @@ from .routers import departments, applications, jobseekers, positions
 
 app = FastAPI()
 
-SQLModel.metadata.create_all(engine)
+@app.on_event("startup")
+def on_startup():
+    SQLModel.metadata.create_all(engine)
 
 app.include_router(applications.router)
 app.include_router(departments.router)
