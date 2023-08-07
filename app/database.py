@@ -7,7 +7,7 @@ sqlite_url = f"sqlite:///{sqlite_file_name}"
 connect_args = {"check_same_thread": False}
 engine = create_engine(sqlite_url, echo=True, connect_args=connect_args)
 
-# # === Seeder ===
+# === Seeder ===
 
 # department_1 = Department(name="Technology", description="Technology department")
 # department_2 = Department(name="Operation", description="Operation department")

@@ -14,6 +14,12 @@ services:
       dockerfile: Dockerfile
     mem_limit: 500m
     cpus: 0.5
+    healthcheck:
+      test: ["CMD", "curl", "-f", "127.0.0.1/ping"]
+      interval: 1m30s
+      timeout: 30s
+      retries: 5
+      start_period: 5s
 
   # whoami:
   #   image: traefik/whoami:latest
