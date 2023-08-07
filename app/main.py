@@ -16,9 +16,5 @@ app.include_router(jobseekers.router)
 app.include_router(positions.router)
 
 @app.get("/ping")
-def ping():
-    return {"ping": "pong"}
-
-# @app.get("/ip")
-# def ip(x_forwarded_for: Union[str, None] = Header(default=None)):
-#     return {"ip": x_forwarded_for}
+def ping(x_forwarded_for: Union[str, None] = Header(default=None)):
+    return {"ping": f"pong {x_forwarded_for}"}

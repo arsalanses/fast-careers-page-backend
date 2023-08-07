@@ -3,6 +3,7 @@ services:
     image: haproxy:latest
     volumes:
       - ./haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg:ro
+      # - ./haproxy.whoami.cfg:/usr/local/etc/haproxy/haproxy.cfg:ro
     ports:
       - "127.0.0.1:8080:80"
       - "127.0.0.1:3001:3001"
