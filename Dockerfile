@@ -6,7 +6,7 @@ COPY ./requirements.txt /code/requirements.txt
 
 RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
 
-RUN apt update && apt install curl
+RUN apt update && apt install curl -y
 
 COPY ./app /code/app
 
