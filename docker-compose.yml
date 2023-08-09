@@ -18,10 +18,13 @@ services:
     mem_limit: 100m
     cpus: 0.1
     volumes:
-      - ./database/:/code/app/database/
+      - database:/code/app/database
     healthcheck:
       test: ["CMD", "curl", "-f", "127.0.0.1/ping"]
       interval: 1m30s
       timeout: 30s
       retries: 5
       start_period: 5s
+
+volumes:
+  database:
