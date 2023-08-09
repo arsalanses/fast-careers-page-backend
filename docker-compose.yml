@@ -1,18 +1,24 @@
 services:
   haproxy:
     image: haproxy:latest
+    restart: always
     volumes:
       - ./haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg:ro
+      - ./certs:/usr/local/etc/certs:ro
     ports:
-      - "127.0.0.1:8080:80"
-      - "127.0.0.1:3001:3001"
+      - "0.0.0.0:80:80"
+      - "0.0.0.0:443:443"
+      - "0.0.0.0:3001:3001"
 
   careers:
     build:
       context: .
       dockerfile: Dockerfile
+    restart: always
     mem_limit: 100m
     cpus: 0.1
+    volumes:
+      - ./database/:/code/app/database/
     healthcheck:
       test: ["CMD", "curl", "-f", "127.0.0.1/ping"]
       interval: 1m30s
