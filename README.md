@@ -30,3 +30,7 @@ helm upgrade <release-name> <chart-name>
 helm rollback <release-name> <revision-number>
 helm uninstall <release-name>
 ```
+
+```sh
+kubectl exec services/careers-web-app-service -- curl -s 10.96.124.174:8080/ping
+```
