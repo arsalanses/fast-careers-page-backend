@@ -1,15 +1,12 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ include "careers-helm.fullname" . }}
-  labels:
-    {{- include "careers-helm.labels" . | nindent 4 }}
+  name: {{ .Values.image.name }}-web-app-service
 spec:
-  type: {{ .Values.service.type }}
+  type: ClusterIP
   ports:
-    - port: {{ .Values.service.port }}
-      targetPort: http
-      protocol: TCP
-      name: http
+    - protocol: TCP
+      port: 8080
+      targetPort: 80
   selector:
-    {{- include "careers-helm.selectorLabels" . | nindent 4 }}
+    app: {{ .Values.image.name }}-web-app
