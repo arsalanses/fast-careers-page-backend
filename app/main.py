@@ -2,6 +2,7 @@ from typing import Union
 
 from fastapi import FastAPI, Header
 
+from os import environ
 from sqlmodel import SQLModel
 from .database import engine
 from .routers import departments, applications, positions
@@ -20,4 +21,4 @@ app.include_router(positions.router)
 
 @app.get("/ping", tags=["health-check"])
 def ping(x_forwarded_for: Union[str, None] = Header(default=None)):
-    return {"ping": f"pong {x_forwarded_for}"}
+    return {"ping": f"pong [{environ.get('HOSTNAME')}] -> {x_forwarded_for}"}
