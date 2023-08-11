@@ -17,6 +17,12 @@ uvicorn app.main:app --reload
 docker compose up -d --force-recreate
 ```
 
+Scale container:
+```sh
+docker compose up --scale careers=3 -d
+watch -n 1 'curl -s 127.0.0.1:8080/ping'
+```
+
 ## Kubernetes ans Helm Charts
 to view deployment manifests
 ```sh
