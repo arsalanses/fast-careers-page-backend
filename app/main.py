@@ -7,6 +7,7 @@ from sqlmodel import SQLModel
 from .database import engine
 from .routers import departments, applications, positions
 from prometheus_client import Counter, generate_latest, CONTENT_TYPE_LATEST
+from fastapi.middleware.cors import CORSMiddleware
 
 REQUEST_COUNTER = Counter(
     'http_requests_total',
@@ -18,6 +19,16 @@ REQUEST_COUNTER = Counter(
 # docs_url=None and redoc_url=None
 app = FastAPI(title="Fast Careers Page")
 
+origins = ["*"]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 @app.on_event("startup")
 def on_startup():
     SQLModel.metadata.create_all(engine)
@@ -27,7 +38,7 @@ app.include_router(departments.router)
 app.include_router(positions.router)
 
 @app.get("/ping", tags=["health-check"])
-def ping(x_forwarded_for: Union[str, None] = Header(default=None)):
+async def ping(x_forwarded_for: Union[str, None] = Header(default=None)):
     REQUEST_COUNTER.labels(method='GET', path='/ping', status_code=200).inc()
     return {"ping": f"pong [{environ.get('HOSTNAME')}] -> {x_forwarded_for}"}
 
