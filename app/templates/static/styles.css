@@ -4,10 +4,6 @@ body{
     font-family: monospace;
 }
 
-#ping {
-    height: 44px;
-}
-
 th, td {
     border-bottom: 1px solid #ddd;
     padding: 10px;
@@ -17,4 +13,38 @@ th, td {
 #position-title:hover {
     font-weight:bold;
     cursor: pointer;
+}
+
+input {
+    padding: 7px;
+    margin: 2px;
+    border: 1px solid #34495e;
+    border-radius: 0px;
+    color: #2c3e50;
+    font-family: monospace;
+}
+
+input[type=file] {
+    border: 0px;
+}
+
+button[type=submit] {
+    padding: 7px;
+    border: none;
+    border-radius: 0px;
+    background-color: #34495e;
+    color: #ffffff;
+    cursor: pointer;
+    font-family: monospace;
+}
+
+ul {
+    list-style: none;
+    padding: 0px;
+}
+
+span {
+    display: block;
+    width: 500px;
+    word-wrap: break-word;
 }

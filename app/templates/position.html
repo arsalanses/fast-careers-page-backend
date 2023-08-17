@@ -6,7 +6,7 @@
     </tr>
     <tr>
       <td><b>Description</b></td>
-      <td>{{ results.description }}</td>
+      <td><span>{{ results.description }}</span></td>
     </tr>
     <tr>
       <td><b>Experience level</b></td>
@@ -18,3 +18,15 @@
     </tr>
   </tbody>
 </table>
+
+<form hx-post="/applications">
+  <ul>
+    <li><input name="jobseeker_name" type="text" placeholder="Name"/></li>
+    <li><input name="jobseeker_phone" type="tel" placeholder="Telephone"/></li>
+    <li><input name="jobseeker_mail" type="email" placeholder="Email"/></li>
+    <li><input name="jobseeker_resume" type="text" placeholder="Resume"/></li>
+    <li><input name="position_id" value="{{ results.department_id }}" type="text" hidden/></li>
+    <li><input name="accept" value="text/html" type="text" hidden/></li>
+    <li><button type="submit">Submit</button></li>
+  </ul>
+</form>
