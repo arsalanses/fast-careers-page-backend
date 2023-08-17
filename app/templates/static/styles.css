@@ -1,6 +1,20 @@
-#ping {
+body{
     background-color: #ecf0f1;
     color: #34495e;
     font-family: monospace;
+}
+
+#ping {
     height: 44px;
+}
+
+th, td {
+    border-bottom: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+
+#position-title:hover {
+    font-weight:bold;
+    cursor: pointer;
 }

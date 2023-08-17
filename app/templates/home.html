@@ -8,10 +8,45 @@
     <script src="{{ url_for('static', path='/htmx.min.js') }}"></script>
   </head>
   <body>
-    <div id="ping">
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Positions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for department in results %}
+        <tr>
+          <td>{{ department[0].name }}</td>
+          <td>{{ department[0].description }}</td>
+          <td>
+            <ol>
+              {%- for position in department[0].positions %}
+              <li>
+                <div id="position-title" hx-target="#parent-div" hx-swap="innerHTML" hx-indicator="#indicator" hx-get="/home/position/{{ position.id }}">
+                  {{ position.title }}
+                </div>
+              </li>
+              {%- endfor %}
+            </ol>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    
+    <img id="indicator" class="htmx-indicator" src="{{ url_for('static', path='/puff.svg') }}"/>
+    <div id="parent-div"></div>
+
+    <!-- <div id="ping">
       <div hx-get="/ping" hx-trigger="load">
-        <img class="htmx-indicator" src="{{ url_for('static', path='/puff.svg') }}" />
+        <img
+          class="htmx-indicator"
+          src="{{ url_for('static', path='/puff.svg') }}"
+        />
       </div>
-    </div>
+    </div> -->
   </body>
 </html>
