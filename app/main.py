@@ -5,9 +5,11 @@ from fastapi import FastAPI, Header, Response
 from os import environ
 from sqlmodel import SQLModel
 from .database import engine
-from .routers import departments, applications, positions
+from .routers import departments, applications, positions, templates
 from prometheus_client import Counter, generate_latest, CONTENT_TYPE_LATEST
 from fastapi.middleware.cors import CORSMiddleware
+
+from fastapi.staticfiles import StaticFiles
 
 REQUEST_COUNTER = Counter(
     'http_requests_total',
@@ -18,6 +20,7 @@ REQUEST_COUNTER = Counter(
 # You can disable docs by setting:
 # docs_url=None and redoc_url=None
 app = FastAPI(title="Fast Careers Page")
+app.mount("/static", StaticFiles(directory="app/templates/static"), name="static")
 
 origins = ["*"]
 
@@ -36,6 +39,7 @@ def on_startup():
 app.include_router(applications.router)
 app.include_router(departments.router)
 app.include_router(positions.router)
+app.include_router(templates.router)
 
 @app.get("/ping", tags=["health-check"])
 async def ping(x_forwarded_for: Union[str, None] = Header(default=None)):
