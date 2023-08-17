@@ -3,3 +3,4 @@ uvicorn==0.23.2
 sqlmodel==0.0.8
 prometheus-client==0.17.1
 python-multipart==0.0.6
+Jinja2==3.1.2
