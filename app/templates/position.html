@@ -19,12 +19,12 @@
   </tbody>
 </table>
 
-<form hx-post="/applications">
+<form hx-post="/applications" hx-encoding="multipart/form-data" id="form">
   <ul>
     <li><input name="jobseeker_name" type="text" placeholder="Name"/></li>
     <li><input name="jobseeker_phone" type="tel" placeholder="Telephone"/></li>
     <li><input name="jobseeker_mail" type="email" placeholder="Email"/></li>
-    <li><input name="jobseeker_resume" type="text" placeholder="Resume"/></li>
+    <li><input name="jobseeker_resume" type="file" placeholder="Resume"/></li>
     <li><input name="position_id" value="{{ results.department_id }}" type="text" hidden/></li>
     <li><input name="accept" value="text/html" type="text" hidden/></li>
     <li><button type="submit">Submit</button></li>
