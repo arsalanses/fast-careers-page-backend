@@ -37,7 +37,7 @@ services:
       - "./database:/app:rw"
       - "./login-password-less.php:/var/www/html/plugins-enabled/login-password-less.php"
     environment:
-      - ADMINER_PLUGINS='login-password-less'
-      - ADMINER_DESIGN='dracula'
+      - ADMINER_PLUGINS=login-password-less
+      - ADMINER_DESIGN=dracula
     ports:
       - 3303:8080
