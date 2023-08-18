@@ -21,6 +21,7 @@
 
 <form hx-post="/applications" hx-encoding="multipart/form-data" id="form">
   <ul>
+    <li><input type="text" placeholder="Applying for {{ results.title[:8] }}" disabled/></li>
     <li><input name="jobseeker_name" type="text" placeholder="Name" required/></li>
     <li><input name="jobseeker_phone" type="tel" placeholder="Telephone" required/></li>
     <li><input name="jobseeker_mail" type="email" placeholder="Email" required/></li>

@@ -10,7 +10,7 @@ templates = Jinja2Templates(directory="app/templates")
 
 router = APIRouter()
 
-@router.get("/home", response_class=HTMLResponse)
+@router.get("/home", response_class=HTMLResponse, tags=['Jinja'])
 async def home(request: Request):
     with Session(engine) as session:
         statement = select(Department)
@@ -18,7 +18,7 @@ async def home(request: Request):
         department_list = [[department, department.positions] for department in results]
     return templates.TemplateResponse("home.html", {"request": request, "results": department_list})
 
-@router.get("/home/position/{position_id}", response_class=HTMLResponse)
+@router.get("/home/position/{position_id}", response_class=HTMLResponse, tags=['Jinja'])
 async def home(request: Request, position_id: int):
     with Session(engine) as session:
         position = session.get(Position, position_id)
