@@ -29,17 +29,3 @@ services:
       timeout: 30s
       retries: 5
       start_period: 5s
-
-  adminer:
-    # image: adminer
-    build:
-      context: .
-      dockerfile: adminer.Dockerfile
-    restart: always
-    volumes:
-      - "./database:/app:rw"
-    environment:
-      - ADMINER_PLUGINS=login-password-less
-      - ADMINER_DESIGN=dracula
-    ports:
-      - 3303:8080
