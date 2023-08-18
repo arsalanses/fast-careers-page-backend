@@ -1,14 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="shortcut icon" href="{{ url_for('static', path='/favicon.ico') }}">
-    <title>Home</title>
-    <link href="{{ url_for('static', path='/styles.css') }}" rel="stylesheet" />
-    <script src="{{ url_for('static', path='/htmx.min.js') }}"></script>
-  </head>
-  <body>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="shortcut icon" href="{{ url_for('static', path='/favicon.ico') }}">
+  <title>Home</title>
+  <link href="{{ url_for('static', path='/styles.css') }}" rel="stylesheet" />
+  <script src="{{ url_for('static', path='/htmx.min.js') }}"></script>
+</head>
+
+<body>
+
+  <div id="container">
+
     <table>
       <thead>
         <tr>
@@ -26,7 +31,12 @@
             <ol>
               {%- for position in department[0].positions %}
               <li>
-                <div id="position-title" hx-target="#parent-div" hx-swap="innerHTML" hx-indicator="#indicator" hx-get="/home/position/{{ position.id }}">
+                <div id="position-title"
+                  hx-target="#parent-div"
+                  hx-swap="innerHTML"
+                  hx-indicator="#indicator"
+                  hx-get="/home/position/{{ position.id }}"
+                >
                   {{ position.title }}
                 </div>
               </li>
@@ -37,9 +47,10 @@
         {% endfor %}
       </tbody>
     </table>
-    
-    <img id="indicator" class="htmx-indicator" src="{{ url_for('static', path='/puff.svg') }}"/>
-    <div id="parent-div"></div>
 
-  </body>
+    <img id="indicator" class="htmx-indicator" src="{{ url_for('static', path='/puff.svg') }}" />
+    <div id="parent-div"></div>
+  </div>
+</body>
+
 </html>

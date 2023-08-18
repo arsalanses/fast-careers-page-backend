@@ -1,7 +1,19 @@
-body{
+body {
     background-color: #ecf0f1;
     color: #34495e;
     font-family: monospace;
+}
+
+table, form {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 th, td {
@@ -22,6 +34,10 @@ input {
     border-radius: 0px;
     color: #2c3e50;
     font-family: monospace;
+}
+
+input:focus {
+    outline: none;
 }
 
 input[type=file] {
