@@ -7,7 +7,7 @@ VENV_NAME := venv
 VENV_ACTIVATE := . $(VENV_NAME)/bin/activate
 PYTHON := $(VENV_NAME)/bin/python
 
-.PHONY: up down build start stop restart logs ps run
+.PHONY: up down build start stop restart logs ps run prune
 
 up: build start
 
@@ -26,7 +26,7 @@ restart:
 	$(DOCKER_COMPOSE) restart
 
 logs:
-	$(DOCKER_COMPOSE) logs -f $(SERVICE_NAME)
+	$(DOCKER_COMPOSE) logs -n 100 -f $(SERVICE_NAME)
 
 ps:
 	$(DOCKER_COMPOSE) ps
@@ -34,3 +34,7 @@ ps:
 run:
 	@echo "Starting development server..."
 	$(VENV_ACTIVATE) && uvicorn app.main:app --reload
+
+prune:
+	@echo "Cleaning up Docker system resources..."
+	docker system prune --all --volumes --force
