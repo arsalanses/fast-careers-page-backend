@@ -1,5 +1,9 @@
 # Fast Careers page
 
+<p align="center">
+    <img src="./screenshot.png" alt="diagram" width="70%">
+</p>
+
 This is a web application built with Python and FastAPI that serves as a careers page for a company. It provides an interface for managing job postings and accepting applications from potential candidates.
 
 ## Installation
