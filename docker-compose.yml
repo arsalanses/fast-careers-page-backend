@@ -22,9 +22,22 @@ services:
     cpus: 0.1
     volumes:
       - ./database:/code/database
+      - ./resume_files:/code/resume_files
     healthcheck:
       test: ["CMD", "curl", "-f", "127.0.0.1/ping"]
       interval: 1m30s
       timeout: 30s
       retries: 5
       start_period: 5s
+
+  adminer:
+    image: adminer
+    restart: always
+    volumes:
+      - "./database:/app:rw"
+      - "./login-password-less.php:/var/www/html/plugins-enabled/login-password-less.php"
+    environment:
+      - ADMINER_PLUGINS='login-password-less'
+      - ADMINER_DESIGN='dracula'
+    ports:
+      - 3303:8080

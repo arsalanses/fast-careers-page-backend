@@ -13,9 +13,9 @@ router = APIRouter()
 async def create_application(jobseeker_name: Annotated[str, Form()],
                              jobseeker_phone: Annotated[str, Form()],
                              jobseeker_mail: Annotated[str, Form()],
-                             jobseeker_resume: UploadFile | None = None,
+                             jobseeker_resume: UploadFile = None,
                              position_id: str = Form(),
-                             accept: str = Form()):
+                             accept: str | None = Form()):
 
     letters = string.ascii_letters
     numbers = string.digits
