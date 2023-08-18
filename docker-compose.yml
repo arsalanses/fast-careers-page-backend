@@ -31,11 +31,13 @@ services:
       start_period: 5s
 
   adminer:
-    image: adminer
+    # image: adminer
+    build:
+      context: .
+      dockerfile: adminer.Dockerfile
     restart: always
     volumes:
       - "./database:/app:rw"
-      - "./login-password-less.php:/var/www/html/plugins-enabled/login-password-less.php"
     environment:
       - ADMINER_PLUGINS=login-password-less
       - ADMINER_DESIGN=dracula
