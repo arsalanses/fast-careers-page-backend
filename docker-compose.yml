@@ -22,7 +22,7 @@ services:
     cpus: 0.1
     volumes:
       - ./database:/code/database
-      - ./resume_files:/code/resume_files
+      - ./resume_files:/code/app/resume_files
     healthcheck:
       test: ["CMD", "curl", "-f", "127.0.0.1/ping"]
       interval: 1m30s
