@@ -196,4 +196,4 @@ pyrightconfig.json
 
 database.db
 
-resume_files/*.pdf
+app/resume_files/*.pdf

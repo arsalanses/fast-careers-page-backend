@@ -22,7 +22,7 @@ async def create_application(jobseeker_name: Annotated[str, Form()],
     random_prefix = ''.join(random.choice(letters + numbers) for _ in range(10))
     filename = f"{random_prefix}-{jobseeker_resume.filename}"
 
-    async with aiofiles.open(f'resume_files/{filename}', 'wb') as out_file:
+    async with aiofiles.open(f'app/resume_files/{filename}', 'wb') as out_file:
         content = await jobseeker_resume.read()
         await out_file.write(content)
 
