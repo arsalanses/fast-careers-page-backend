@@ -1,6 +1,6 @@
 services:
   haproxy:
-    image: haproxy:latest
+    image: haproxy:2.8.2-bullseye
     restart: always
     volumes:
       - ./haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg:ro
