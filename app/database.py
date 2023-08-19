@@ -5,9 +5,9 @@ from os import environ
 
 sqlite_file_name = "database/database.db"
 sqlite_url = f"sqlite:///{sqlite_file_name}"
-mariadb_url = f"mariadb+pymysql://{environ.get('mariadb_username')}:{environ.get('mariadb_password')}@{environ.get('mariadb_hostname')}/{environ.get('mariadb_database')}?charset=utf8mb4"
+mysql_url = f"mariadb+pymysql://{environ.get('mysql_username')}:{environ.get('mysql_password')}@{environ.get('mysql_hostname')}/{environ.get('mysql_database')}?charset=utf8mb4"
 connect_args = {"check_same_thread": False}
-engine = create_engine(mariadb_url if environ.get('mariadb_mode') == 'True' else sqlite_url, echo=True, connect_args=connect_args)
+engine = create_engine(mysql_url if environ.get('mysql_mode') == 'True' else sqlite_url, echo=True)
 
 # === Seeder ===
 

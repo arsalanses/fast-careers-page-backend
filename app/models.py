@@ -1,11 +1,11 @@
 from typing import Optional, List
 
-from sqlmodel import Field, SQLModel, Relationship
+from sqlmodel import Field, SQLModel, Relationship, Column, String
 from datetime import datetime
 
 class Department(SQLModel, table=True):
     id: Optional[int] = Field(default=None, primary_key=True)
-    name: str
+    name: Column(String(255))
     description: str
 
     positions: List["Position"] = Relationship(back_populates="department")

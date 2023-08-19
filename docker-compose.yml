@@ -19,15 +19,15 @@ services:
       dockerfile: Dockerfile
     restart: always
     depends_on:
-      - mariadb
+      - mysql
     mem_limit: 100m
     cpus: 0.1
     environment:
-      - mariadb_mode=True
-      - mariadb_hostname=mariadb
-      - mariadb_database=careersdb
-      - mariadb_username=careers_dbuser
-      - mariadb_password=7O7dxwqV8e6aUCytIhk=
+      - mysql_mode=True
+      - mysql_hostname=mysql
+      - mysql_database=careersdb
+      - mysql_username=careers_dbuser
+      - mysql_password=7O7dxwqV8e6aUCytIhk=
     volumes:
       - ./database:/code/database
       - ./resume_files:/code/app/resume_files
@@ -38,19 +38,19 @@ services:
       retries: 5
       start_period: 5s
 
-  mariadb:
-    image: mariadb:11.0.3-jammy
+  mysql:
+    image: mysql:8.0.34-debian
     restart: always
     environment:
-      MARIADB_DATABASE: careersdb
-      MARIADB_USER: careers_dbuser
-      MARIADB_PASSWORD: 7O7dxwqV8e6aUCytIhk=
-      MARIADB_ROOT_PASSWORD: 7O7dxwqVqV8e6aUCytI=
+      MYSQL_DATABASE: careersdb
+      MYSQL_USER: careers_dbuser
+      MYSQL_PASSWORD: 7O7dxwqV8e6aUCytIhk=
+      MYSQL_ROOT_PASSWORD: 7O7dxwqVqV8e6aUCytI=
 
   adminer:
     image: adminer:4.8.1-standalone
     depends_on:
-      - mariadb
+      - mysql
     restart: always
     # ports:
     #   - 8080:8080
