@@ -1,11 +1,13 @@
 from sqlmodel import create_engine, select, Session
 
 from .models import Department, Application, Position
+from os import environ
 
 sqlite_file_name = "database/database.db"
 sqlite_url = f"sqlite:///{sqlite_file_name}"
+mariadb_url = f"mariadb+pymysql://{environ.get('mariadb_username')}:{environ.get('mariadb_password')}@{environ.get('mariadb_hostname')}/{environ.get('mariadb_database')}?charset=utf8mb4"
 connect_args = {"check_same_thread": False}
-engine = create_engine(sqlite_url, echo=True, connect_args=connect_args)
+engine = create_engine(mariadb_url if environ.get('mariadb_mode') == 'True' else sqlite_url, echo=True, connect_args=connect_args)
 
 # === Seeder ===
 

@@ -18,8 +18,15 @@ services:
       context: .
       dockerfile: Dockerfile
     restart: always
+    depends_on:
+      - mariadb
     mem_limit: 100m
     cpus: 0.1
+    environment:
+      - mariadb_hostname=mariadb
+      - mariadb_database=careersdb
+      - mariadb_username=careers_dbuser
+      - mariadb_password=7O7dxwqV8e6aUCytIhk=
     volumes:
       - ./database:/code/database
       - ./resume_files:/code/app/resume_files
@@ -29,3 +36,20 @@ services:
       timeout: 30s
       retries: 5
       start_period: 5s
+
+  mariadb:
+    image: mariadb:11.0.3-jammy
+    restart: always
+    environment:
+      MARIADB_DATABASE: careersdb
+      MARIADB_USER: careers_dbuser
+      MARIADB_PASSWORD: 7O7dxwqV8e6aUCytIhk=
+      MARIADB_ROOT_PASSWORD: 7O7dxwqVqV8e6aUCytI=
+
+  adminer:
+    image: adminer:4.8.1-standalone
+    depends_on:
+      - mariadb
+    restart: always
+    # ports:
+    #   - 8080:8080
