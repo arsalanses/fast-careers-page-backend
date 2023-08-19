@@ -26,6 +26,16 @@
     <li><input name="jobseeker_phone" type="tel" placeholder="Telephone" required/></li>
     <li><input name="jobseeker_mail" type="email" placeholder="Email" required/></li>
     <li><input name="jobseeker_resume" type="file" placeholder="Resume" accept=".pdf" required/></li>
+    <li>
+      <svg class="captcha-image" width="70" height="30" xmlns="http://www.w3.org/2000/svg">
+        <rect width="100%" height="100%" fill="#eee"/>
+        <line x1="0" y1="0" x2="70" y2="30" stroke="#999" />
+        <line x1="0" y1="20" x2="70" y2="20" stroke="#999" />
+        {% set captcha = range(1000, 9999) | random %}
+        <text style="pointer-events: none;" x="50%" y="50%" text-anchor="middle" alignment-baseline="middle" font-size="20" fill="#999">{{ captcha }}</text>
+      </svg>
+    </li>
+    <li><input pattern="{{ captcha }}" type="text" placeholder="Captcha" required></li>
     <li><input name="position_id" value="{{ results.department_id }}" type="text" hidden/></li>
     <li><input name="accept" value="text/html" type="text" hidden/></li>
     <li><button type="submit"><b>Submit</b></button></li>
